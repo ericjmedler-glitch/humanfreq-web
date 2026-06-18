@@ -1,44 +1,46 @@
 import Link from "next/link";
 import ShopButton from "@/components/ShopButton";
+import HeroShopButton from "@/components/HeroShopButton";
 import EmailCapture from "@/components/EmailCapture";
 
 export default function LandingPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      {/* Full viewport so the shop button is visible without scrolling on any phone */}
       <section
-        className="relative flex flex-col justify-end"
+        className="relative flex flex-col"
         style={{
           backgroundColor: "var(--color-hero-bg)",
-          minHeight: "62svh",
-          maxHeight: "75svh",
+          minHeight: "100svh",
         }}
       >
-        {/* Hero image — Eric provides: golden-hour trail photo.
-            Drop the file at public/images/hero.jpg to activate. */}
+        {/* Hero image — golden-hour trail, message-matched to the launch ad.
+            Drop at public/images/hero.jpg — sibling shot of the ad image. */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/hero.jpg')",
-            opacity: 0.72,
+            opacity: 0.68,
           }}
           role="img"
           aria-label="Golden-hour trail"
         />
 
-        {/* Gradient — keeps tagline legible against any photo */}
+        {/* Top gradient — keeps wordmark legible */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(7,5,10,0.15) 0%, rgba(7,5,10,0.68) 70%, rgba(7,5,10,0.92) 100%)",
+              "linear-gradient(to bottom, rgba(7,5,10,0.72) 0%, rgba(7,5,10,0.28) 38%, rgba(7,5,10,0.55) 70%, rgba(7,5,10,0.88) 100%)",
           }}
         />
 
-        <div className="relative z-10 px-5 pb-8 pt-10 max-w-lg mx-auto w-full">
-          {/* Wordmark */}
+        {/* All hero content in one column — top wordmark, tagline, then CTA at bottom */}
+        <div className="relative z-10 flex flex-col justify-between flex-1 px-5 pt-10 pb-28 max-w-lg mx-auto w-full">
+
+          {/* Top: wordmark */}
           <p
-            className="mb-6"
             style={{
               color: "var(--color-amber)",
               fontFamily: "var(--font-cinzel), serif",
@@ -50,64 +52,75 @@ export default function LandingPage() {
             Human Frēq
           </p>
 
-          {/* Tagline — locked copy per build spec */}
-          <h1
-            style={{
-              color: "var(--color-hero-text)",
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "clamp(1.9rem, 7vw, 2.8rem)",
-              fontWeight: 300,
-              lineHeight: 1.3,
-            }}
-          >
-            Your energy is your currency.
-            <br />
-            <em>Your energy at rest is your frequency.</em>
-          </h1>
+          {/* Middle: tagline */}
+          <div>
+            <h1
+              style={{
+                color: "var(--color-hero-text)",
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "clamp(2rem, 7.5vw, 3rem)",
+                fontWeight: 300,
+                lineHeight: 1.25,
+              }}
+            >
+              Your energy is your currency.
+              <br />
+              <em>Your energy at rest is your frequency.</em>
+            </h1>
 
-          {/* Early-access label */}
-          <p
-            className="mt-5"
-            style={{
-              color: "var(--color-amber)",
-              fontFamily: "var(--font-cinzel), serif",
-              fontSize: "0.65rem",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              opacity: 0.9,
-            }}
-          >
-            Early Access Collection · Limited Availability
-          </p>
-        </div>
+            <p
+              className="mt-5"
+              style={{
+                color: "var(--color-amber)",
+                fontFamily: "var(--font-cinzel), serif",
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                opacity: 0.9,
+              }}
+            >
+              Early Access Collection · Limited Availability
+            </p>
+          </div>
 
-        {/* Scroll-peek cue */}
-        <div
-          className="absolute bottom-0 left-0 right-0 text-center pb-2 z-10 pointer-events-none"
-          aria-hidden="true"
-          style={{ color: "var(--color-hero-text)", opacity: 0.35, fontSize: "0.75rem" }}
-        >
-          ↓
+          {/* Bottom: primary hero CTA — the main pathway, impossible to miss */}
+          <div className="flex flex-col items-start gap-3">
+            <HeroShopButton />
+            {/* Quiet nudge so they know there's more if they want it */}
+            <p
+              style={{
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "0.95rem",
+                color: "var(--color-hero-text)",
+                opacity: 0.55,
+                fontStyle: "italic",
+              }}
+            >
+              Or scroll to learn the story.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ── STORY TEASER ─────────────────────────────────────────────────── */}
+      {/* ── STORY TEASER — optional depth, below the fold ───────────────── */}
       <main
         className="flex-1 px-5 py-12 max-w-lg mx-auto w-full"
         style={{ backgroundColor: "var(--color-content-bg)", color: "var(--color-content-text)" }}
       >
-        <h2
+        {/* Quiet optional label — signals this is depth, not the main path */}
+        <p
           className="mb-6"
           style={{
             fontFamily: "var(--font-cinzel), serif",
-            fontSize: "0.65rem",
+            fontSize: "0.6rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "var(--color-amber)",
+            color: "var(--color-muted)",
+            opacity: 0.7,
           }}
         >
-          The Frēq who brought you here
-        </h2>
+          The story, if you want it
+        </p>
 
         <div
           className="space-y-5"
