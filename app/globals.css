@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand colors */
+  --color-hero-bg: #07050a;
+  --color-hero-text: #ede5d4;
+  --color-content-bg: #f3ede0;
+  --color-content-text: #3a2c1c;
+  --color-amber: #c09030;
+  --color-amber-hover: #a87c28;
+  --color-muted: #8a7a6a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
+  --font-label: var(--font-cinzel);
+  --font-mono: var(--font-dm-mono);
+  --font-hand: var(--font-caveat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-content-bg);
+  color: var(--color-content-text);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Prevent any horizontal scroll */
+body, html {
+  max-width: 100%;
+}
+
+/* Sticky button clearance — keeps content from hiding behind fixed bar */
+.sticky-clearance {
+  padding-bottom: 72px;
 }
