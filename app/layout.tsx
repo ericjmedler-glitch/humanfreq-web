@@ -48,7 +48,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${cinzel.variable} ${dmMono.variable} ${caveat.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col sticky-clearance">
+      <body className="min-h-full flex flex-col">
         {children}
       </body>
     </html>

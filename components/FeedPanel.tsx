@@ -1,0 +1,168 @@
+import Image from "next/image";
+import Link from "next/link";
+import { SHOP_URL } from "@/config/site";
+
+// Text block position within the panel.
+// "lower-left" | "lower" | "upper" | "left"
+export type TextPosition = "lower-left" | "lower" | "upper" | "left";
+
+type FeedPanelProps = {
+  image: string;           // path relative to /public, e.g. "/images/hero.png"
+  alt: string;
+  headline: string;
+  body: string;
+  textPosition: TextPosition;
+  priority?: boolean;      // true for first panel only
+};
+
+// Scrim gradient behind text, angled per text position, keeps copy legible on
+// any image without washing out the photo.
+function scrimStyle(pos: TextPosition): React.CSSProperties {
+  const base = "rgba(7,5,10,";
+  switch (pos) {
+    case "upper":
+      return { background: `linear-gradient(to bottom, ${base}0.72) 0%, ${base}0.28) 55%, transparent 100%)` };
+    case "lower":
+    case "lower-left":
+      return { background: `linear-gradient(to top, ${base}0.82) 0%, ${base}0.38) 52%, transparent 100%)` };
+    case "left":
+      return { background: `linear-gradient(to right, ${base}0.78) 0%, ${base}0.32) 55%, transparent 100%)` };
+  }
+}
+
+// Absolute position of the copy block within the panel.
+function textBlockStyle(pos: TextPosition): React.CSSProperties {
+  const base: React.CSSProperties = { position: "absolute", padding: "0 20px" };
+  switch (pos) {
+    case "upper":
+      return { ...base, top: "60px", left: 0, right: 0 };
+    case "lower":
+      return { ...base, bottom: "160px", left: 0, right: 0 };
+    case "lower-left":
+      return { ...base, bottom: "160px", left: 0, width: "65%", maxWidth: "320px" };
+    case "left":
+      return { ...base, top: "50%", transform: "translateY(-50%)", left: 0, width: "60%", maxWidth: "300px" };
+  }
+}
+
+export default function FeedPanel({
+  image,
+  alt,
+  headline,
+  body,
+  textPosition,
+  priority = false,
+}: FeedPanelProps) {
+  return (
+    <section
+      style={{
+        position: "relative",
+        height: "100svh",
+        scrollSnapAlign: "start",
+        overflow: "hidden",
+        backgroundColor: "var(--color-hero-bg)",
+        flexShrink: 0,
+      }}
+    >
+      {/* Photo — Next.js optimized, served as WebP, responsive sizes */}
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        sizes="100vw"
+        quality={85}
+        style={{ objectFit: "cover", objectPosition: "center" }}
+        priority={priority}
+      />
+
+      {/* Directional scrim for text legibility */}
+      <div style={{ position: "absolute", inset: 0, ...scrimStyle(textPosition) }} />
+
+      {/* Copy block */}
+      <div style={textBlockStyle(textPosition)}>
+        <h2
+          style={{
+            color: "var(--color-hero-text)",
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(1.75rem, 6.5vw, 2.6rem)",
+            fontWeight: 300,
+            lineHeight: 1.2,
+            margin: 0,
+          }}
+        >
+          {headline}
+        </h2>
+        <p
+          style={{
+            color: "var(--color-hero-text)",
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "clamp(1rem, 3.5vw, 1.15rem)",
+            lineHeight: 1.55,
+            marginTop: "10px",
+            opacity: 0.88,
+          }}
+        >
+          {body}
+        </p>
+      </div>
+
+      {/* Shop CTA + quiet extras link — identical position on every panel */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "32px",
+          left: 0,
+          right: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
+          padding: "0 20px",
+        }}
+      >
+        <a
+          href={SHOP_URL || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            backgroundColor: "var(--color-amber)",
+            color: "#07050a",
+            borderRadius: "9999px",
+            padding: "0 28px",
+            minHeight: "52px",
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "1.15rem",
+            fontWeight: 600,
+            letterSpacing: "0.04em",
+            textDecoration: "none",
+            boxShadow: "0 4px 20px rgba(192,144,48,0.4)",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
+          Shop the Fr&#x113;q Shop
+        </a>
+
+        {/* Quiet secondary link — story/bio page */}
+        <Link
+          href="/story"
+          style={{
+            fontFamily: "var(--font-cinzel), serif",
+            fontSize: "0.6rem",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "var(--color-hero-text)",
+            opacity: 0.55,
+            textDecoration: "none",
+          }}
+        >
+          Fr&#x113;q Extras
+        </Link>
+      </div>
+
+    </section>
+  );
+}
