@@ -44,26 +44,17 @@ export default function ScrollCue() {
       >
         <span
           style={{
-            fontFamily: "var(--font-cinzel), serif",
-            fontSize: "0.5rem",
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: "var(--color-hero-text)",
-            opacity: 0.6,
-          }}
-        >
-          scroll
-        </span>
-        <span
-          style={{
+            fontFamily: "var(--font-cormorant), Georgia, serif",
             fontSize: "0.9rem",
+            fontStyle: "italic",
             color: "var(--color-hero-text)",
-            opacity: 0.7,
+            opacity: 0.65,
             animation: "hf-bounce 1.8s ease-in-out infinite",
             display: "block",
+            whiteSpace: "nowrap",
           }}
         >
-          ↓
+          See what the Fr&#x113;q is &#x2192;
         </span>
       </div>
     </>

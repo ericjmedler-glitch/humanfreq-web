@@ -146,16 +146,15 @@ export default function FeedPanel({
           Shop the Fr&#x113;q Shop
         </a>
 
-        {/* Quiet secondary link — story/bio page */}
+        {/* "Frēq Extras" — sentence case, no uppercase, macron must render clearly */}
         <Link
           href="/story"
           style={{
             fontFamily: "var(--font-cinzel), serif",
-            fontSize: "0.6rem",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
+            fontSize: "0.62rem",
+            letterSpacing: "0.14em",
             color: "var(--color-hero-text)",
-            opacity: 0.55,
+            opacity: 0.5,
             textDecoration: "none",
           }}
         >
