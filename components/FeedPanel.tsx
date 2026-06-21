@@ -13,12 +13,26 @@ type FeedPanelProps = {
   body: string;
   textPosition: TextPosition;
   priority?: boolean;      // true for first panel only
+  strongScrim?: boolean;   // darker overlay for high-contrast scenes
+  signature?: string;      // optional signoff rendered below body (e.g. "eric")
 };
 
 // Scrim gradient behind text, angled per text position, keeps copy legible on
-// any image without washing out the photo.
-function scrimStyle(pos: TextPosition): React.CSSProperties {
+// any image without washing out the photo. When `strong` is set the gradient
+// runs darker and deeper for scenes that need the copy to really hold.
+function scrimStyle(pos: TextPosition, strong = false): React.CSSProperties {
   const base = "rgba(7,5,10,";
+  if (strong) {
+    switch (pos) {
+      case "upper":
+        return { background: `linear-gradient(to bottom, ${base}0.92) 0%, ${base}0.60) 55%, ${base}0.30) 100%)` };
+      case "lower":
+      case "lower-left":
+        return { background: `linear-gradient(to top, ${base}0.92) 0%, ${base}0.60) 55%, ${base}0.30) 100%)` };
+      case "left":
+        return { background: `linear-gradient(to right, ${base}0.92) 0%, ${base}0.58) 60%, ${base}0.30) 100%)` };
+    }
+  }
   switch (pos) {
     case "upper":
       return { background: `linear-gradient(to bottom, ${base}0.72) 0%, ${base}0.28) 55%, transparent 100%)` };
@@ -52,6 +66,8 @@ export default function FeedPanel({
   body,
   textPosition,
   priority = false,
+  strongScrim = false,
+  signature,
 }: FeedPanelProps) {
   return (
     <section
@@ -76,7 +92,7 @@ export default function FeedPanel({
       />
 
       {/* Directional scrim for text legibility */}
-      <div style={{ position: "absolute", inset: 0, ...scrimStyle(textPosition) }} />
+      <div style={{ position: "absolute", inset: 0, ...scrimStyle(textPosition, strongScrim) }} />
 
       {/* Copy block */}
       <div style={textBlockStyle(textPosition)}>
@@ -104,6 +120,21 @@ export default function FeedPanel({
         >
           {body}
         </p>
+        {signature ? (
+          <p
+            style={{
+              color: "var(--color-hero-text)",
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontSize: "1.25rem",
+              fontStyle: "italic",
+              lineHeight: 1.2,
+              marginTop: "14px",
+              opacity: 0.85,
+            }}
+          >
+            {signature}
+          </p>
+        ) : null}
       </div>
 
       {/* Shop CTA + quiet extras link — identical position on every panel */}

@@ -14,6 +14,8 @@ const PANELS: Array<{
   headline: string;
   body: string;
   textPosition: TextPosition;
+  strongScrim?: boolean;
+  signature?: string;
 }> = [
   // Panel 4 — Leggings (hero.png is the leggings fit shot despite its filename)
   {
@@ -39,13 +41,15 @@ const PANELS: Array<{
     body: "A few weeks ago I started drinking a gallon of water a day. Sounds simple. But somewhere in there I noticed something I didn't expect, that good water out of a good bottle just feels better. So that's the bottle we went and found. Because what you put in your body matters, and the small stuff turns out to be the big stuff.",
     textPosition: "left",
   },
-  // Panel 7 — Hoodie (copy pending from Eric)
+  // Panel 7 — Hoodie (stronger scrim, signed by Eric)
   {
-    image: "/images/hoodie-curls.png",
-    alt: "Hoodie, relaxed moment",
-    headline: "Easy. Like you on a good day.",
-    body: "[Eric is writing this line. Placeholder — update before launch.]",
+    image: "/images/done-enough.jpeg",
+    alt: "Hoodie, quiet evening at home",
+    headline: "Done enough.",
+    body: "The journey to get here has been long, and honestly, sometimes out of my control. The one thing I wanted was to throw this on, get on the couch, and have Michelle drop her feet in my lap. Kick on the AC, pull on the hoodie, and the whole day goes quiet. I've done enough. Now we just sit here.",
     textPosition: "upper",
+    strongScrim: true,
+    signature: "eric",
   },
   // Panel 8 — Tee / Garden (closing panel)
   {
@@ -75,8 +79,8 @@ export default function FeedPage() {
       {/* Panel 2 — Welcome / about the brand (welcome-couple.png, firelight) */}
       <WelcomePanel />
 
-      {/* Panel 3 — Men's Tee (image pending — placeholder holds the slot) */}
-      <PlaceholderPanel label="Men's Tee — coming soon" />
+      {/* Panel 3 — Founders Tee (headline + body baked into the image) */}
+      <FoundersTeePanel />
 
       {/* Panels 4-8 from data array */}
       {PANELS.map((p) => (
@@ -87,6 +91,8 @@ export default function FeedPage() {
           headline={p.headline}
           body={p.body}
           textPosition={p.textPosition}
+          strongScrim={p.strongScrim}
+          signature={p.signature}
         />
       ))}
 
@@ -204,8 +210,13 @@ function WelcomePanel() {
   );
 }
 
-// ── Placeholder panel — image or copy pending ─────────────────────────────────
-function PlaceholderPanel({ label }: { label: string }) {
+// ── Panel 3: Founders Tee ─────────────────────────────────────────────────────
+// The image already carries its own headline + body, so we show it whole and
+// never overlay duplicate copy. Only the scarcity caption + amber CTA are added.
+function FoundersTeePanel() {
+  const caption =
+    "It carries marks the rest of the collection won't. Small things, on the sleeve, that mean something. This is the only tee that will ever wear them.";
+
   return (
     <section
       style={{
@@ -213,16 +224,40 @@ function PlaceholderPanel({ label }: { label: string }) {
         height: "100svh",
         scrollSnapAlign: "start",
         overflow: "hidden",
-        backgroundColor: "#111008",
+        backgroundColor: "var(--color-hero-bg)",
         flexShrink: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
       }}
     >
-      <p style={{ fontFamily: "var(--font-dm-mono), monospace", fontSize: "0.75rem", letterSpacing: "0.1em", color: "rgba(237,229,212,0.3)", textAlign: "center", padding: "0 24px" }}>
-        [ {label} ]
-      </p>
+      {/* Image shown whole (contain) so the baked-in headline + body never crop */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "200px" }}>
+        <Image
+          src="/images/founders-tee.png"
+          alt="Founders Tee"
+          fill
+          sizes="100vw"
+          quality={85}
+          style={{ objectFit: "contain", objectPosition: "center" }}
+        />
+      </div>
+
+      {/* Scarcity caption — sits between the image and the CTA */}
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: "104px", padding: "0 24px" }}>
+        <p
+          style={{
+            color: "var(--color-hero-text)",
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontSize: "1rem",
+            lineHeight: 1.5,
+            textAlign: "center",
+            maxWidth: "440px",
+            margin: "0 auto",
+            opacity: 0.85,
+          }}
+        >
+          {caption}
+        </p>
+      </div>
+
       <PanelCTA />
     </section>
   );
