@@ -3,6 +3,7 @@ import Link from "next/link";
 import FeedPanel from "@/components/FeedPanel";
 import ScrollCue from "@/components/ScrollCue";
 import EmailCapture from "@/components/EmailCapture";
+import PanelEmailCapture from "@/components/PanelEmailCapture";
 import { SHOP_URL } from "@/config/site";
 import type { TextPosition } from "@/components/FeedPanel";
 
@@ -16,6 +17,7 @@ const PANELS: Array<{
   textPosition: TextPosition;
   strongScrim?: boolean;
   signature?: string;
+  emailCapture?: boolean;
 }> = [
   // Panel 4 — Leggings (hero.png is the leggings fit shot despite its filename)
   {
@@ -24,6 +26,7 @@ const PANELS: Array<{
     headline: "Made for the life you actually live.",
     body: "My girlfriend's been an athlete her whole life, so trust me, she knows the difference between good leggings and the rest. Fine was never going to fly with her. So we kept looking until we found ones she actually loved, and put our mark on them. She wears them to the studio, on the trail, and on the weekends that belong to nobody but her.",
     textPosition: "left",
+    emailCapture: true,
   },
   // Panel 5 — Mug
   {
@@ -93,6 +96,7 @@ export default function FeedPage() {
           textPosition={p.textPosition}
           strongScrim={p.strongScrim}
           signature={p.signature}
+          emailCapture={p.emailCapture}
         />
       ))}
 
@@ -229,7 +233,7 @@ function FoundersTeePanel() {
       }}
     >
       {/* Image shown whole (contain) so the baked-in headline + body never crop */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "200px" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "352px" }}>
         <Image
           src="/images/founders-tee.png"
           alt="Founders Tee"
@@ -240,8 +244,19 @@ function FoundersTeePanel() {
         />
       </div>
 
-      {/* Scarcity caption — sits between the image and the CTA */}
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: "104px", padding: "0 24px" }}>
+      {/* Scarcity caption + compact capture, stacked just above the CTA */}
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: "150px",
+          padding: "0 20px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "14px",
+        }}
+      >
         <p
           style={{
             color: "var(--color-hero-text)",
@@ -256,6 +271,7 @@ function FoundersTeePanel() {
         >
           {caption}
         </p>
+        <PanelEmailCapture />
       </div>
 
       <PanelCTA />

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SHOP_URL } from "@/config/site";
+import PanelEmailCapture from "@/components/PanelEmailCapture";
 
 // Text block position within the panel.
 // "lower-left" | "lower" | "upper" | "left"
@@ -15,6 +16,7 @@ type FeedPanelProps = {
   priority?: boolean;      // true for first panel only
   strongScrim?: boolean;   // darker overlay for high-contrast scenes
   signature?: string;      // optional signoff rendered below body (e.g. "eric")
+  emailCapture?: boolean;  // compact Kit capture above the CTA; copy moves up
 };
 
 // Scrim gradient behind text, angled per text position, keeps copy legible on
@@ -68,7 +70,11 @@ export default function FeedPanel({
   priority = false,
   strongScrim = false,
   signature,
+  emailCapture = false,
 }: FeedPanelProps) {
+  // With a capture pinned to the bottom, force the copy to the top so the two
+  // never collide and the Shop button stays clear.
+  const copyPosition: TextPosition = emailCapture ? "upper" : textPosition;
   return (
     <section
       style={{
@@ -92,10 +98,10 @@ export default function FeedPanel({
       />
 
       {/* Directional scrim for text legibility */}
-      <div style={{ position: "absolute", inset: 0, ...scrimStyle(textPosition, strongScrim) }} />
+      <div style={{ position: "absolute", inset: 0, ...scrimStyle(copyPosition, strongScrim) }} />
 
       {/* Copy block */}
-      <div style={textBlockStyle(textPosition)}>
+      <div style={textBlockStyle(copyPosition)}>
         <h2
           style={{
             color: "var(--color-hero-text)",
@@ -136,6 +142,13 @@ export default function FeedPanel({
           </p>
         ) : null}
       </div>
+
+      {/* Compact email capture, pinned just above the CTA */}
+      {emailCapture ? (
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: "150px", padding: "0 20px" }}>
+          <PanelEmailCapture />
+        </div>
+      ) : null}
 
       {/* Shop CTA + quiet extras link — identical position on every panel */}
       <div
