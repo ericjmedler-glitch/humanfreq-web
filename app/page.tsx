@@ -15,6 +15,7 @@ const PANELS: Array<{
   headline: string;
   body: string;
   textPosition: TextPosition;
+  objectPosition?: string;
   strongScrim?: boolean;
   signature?: string;
   emailCapture?: boolean;
@@ -26,6 +27,7 @@ const PANELS: Array<{
     headline: "Made for the life you actually live.",
     body: "My girlfriend's been an athlete her whole life, so trust me, she knows the difference between good leggings and the rest. Fine was never going to fly with her. So we kept looking until we found ones she actually loved, and put our mark on them. She wears them to the studio, on the trail, and on the weekends that belong to nobody but her.",
     textPosition: "left",
+    objectPosition: "center 60%",
     emailCapture: true,
   },
   // Panel 5 — Mug
@@ -35,6 +37,7 @@ const PANELS: Array<{
     headline: "Be where you are.",
     body: "For thirty-five years I had my coffee every morning with some pretty remarkable people. I miss that. So this mug is my reminder, and maybe yours too. When you're sitting across from someone you love and your head is somewhere else, come back. To the cup. To the table. To them.",
     textPosition: "lower",
+    objectPosition: "center top",
   },
   // Panel 6 — Bottle
   {
@@ -43,14 +46,17 @@ const PANELS: Array<{
     headline: "What you carry matters.",
     body: "A few weeks ago I started drinking a gallon of water a day. Sounds simple. But somewhere in there I noticed something I didn't expect, that good water out of a good bottle just feels better. So that's the bottle we went and found. Because what you put in your body matters, and the small stuff turns out to be the big stuff.",
     textPosition: "left",
+    objectPosition: "center 40%",
   },
   // Panel 7 — Hoodie (stronger scrim, signed by Eric)
+  // PRIVACY: partner name replaced with "the girl I met" per locked privacy rule.
   {
     image: "/images/done-enough.jpeg",
     alt: "Hoodie, quiet evening at home",
     headline: "Done enough.",
-    body: "The journey to get here has been long, and honestly, sometimes out of my control. The one thing I wanted was to throw this on, get on the couch, and have Michelle drop her feet in my lap. Kick on the AC, pull on the hoodie, and the whole day goes quiet. I've done enough. Now we just sit here.",
+    body: "The journey to get here has been long, and honestly, sometimes out of my control. The one thing I wanted was to throw this on, get on the couch, and have the girl I met drop her feet in my lap. Kick on the AC, pull on the hoodie, and the whole day goes quiet. I've done enough. Now we just sit here.",
     textPosition: "upper",
+    objectPosition: "center 25%",
     strongScrim: true,
     signature: "eric",
   },
@@ -67,7 +73,7 @@ const PANELS: Array<{
 export default function FeedPage() {
   return (
     <div
-      id="feed"
+      id="main-content"
       style={{
         height: "100svh",
         overflowY: "scroll",
@@ -94,6 +100,7 @@ export default function FeedPage() {
           headline={p.headline}
           body={p.body}
           textPosition={p.textPosition}
+          objectPosition={p.objectPosition}
           strongScrim={p.strongScrim}
           signature={p.signature}
           emailCapture={p.emailCapture}
@@ -113,50 +120,95 @@ export default function FeedPage() {
 function HeroPanel() {
   return (
     <section
+      className="hf-feed-panel"
       style={{
-        position: "relative",
         height: "100svh",
         scrollSnapAlign: "start",
         overflow: "hidden",
         backgroundColor: "var(--color-hero-bg)",
         flexShrink: 0,
+        position: "relative",
       }}
     >
-      <Image
-        src="/images/Landing.png"
-        alt="Two women walking a golden-hour trail"
-        fill
-        sizes="100vw"
-        quality={85}
-        style={{ objectFit: "cover", objectPosition: "center top" }}
-        priority
-      />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(7,5,10,0.90) 0%, rgba(7,5,10,0.44) 50%, transparent 100%)" }} />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(7,5,10,0.55) 0%, transparent 65%)" }} />
+      {/* Image cell */}
+      <div className="hf-panel-media">
+        <Image
+          src="/images/Landing.png"
+          alt="Two women walking a golden-hour trail"
+          fill
+          sizes="(min-width: 1024px) 56vw, 100vw"
+          quality={85}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
+          priority
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(7,5,10,0.90) 0%, rgba(7,5,10,0.44) 50%, transparent 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(7,5,10,0.55) 0%, transparent 65%)" }} />
 
-      <div style={{ position: "absolute", bottom: "160px", left: 0, width: "72%", maxWidth: "340px", padding: "0 20px" }}>
-        <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", margin: "0 0 10px" }}>
-          Human Fr&#x113;q
-        </p>
-        <h1 style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(1.85rem, 6.5vw, 2.6rem)", fontWeight: 300, lineHeight: 1.2, margin: 0 }}>
-          Your energy is your currency.
-          <br />
-          <em>Your energy at rest is your frequency.</em>
-        </h1>
-        <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.82rem", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, margin: "16px 0 0" }}>
-          Early Access
-        </p>
+        {/* Mobile-only: overlaid text and CTA */}
+        <div className="hf-panel-mobile-only">
+          <div style={{ position: "absolute", bottom: "160px", left: 0, width: "72%", maxWidth: "340px", padding: "0 20px" }}>
+            <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", margin: "0 0 10px" }}>
+              Human Fr&#x113;q
+            </p>
+            <h1 style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(1.85rem, 6.5vw, 2.6rem)", fontWeight: 300, lineHeight: 1.2, margin: 0 }}>
+              Your energy is your currency.
+              <br />
+              <em>Your energy at rest is your frequency.</em>
+            </h1>
+            <p style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(0.9rem, 3vw, 1rem)", lineHeight: 1.5, margin: "14px 0 8px", opacity: 0.8 }}>
+              Book &amp; Apparel for people who train by feel.
+            </p>
+            <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.82rem", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, margin: "0" }}>
+              Early Access
+            </p>
+          </div>
+          <PanelCTA isHero />
+        </div>
       </div>
 
-      <PanelCTA />
+      {/* Desktop: right text column */}
+      <div className="hf-panel-desktop-col">
+        <div className="hf-panel-desktop-inner">
+          <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.6rem", letterSpacing: "0.22em", textTransform: "uppercase", margin: "0 0 1.25rem" }}>
+            Human Fr&#x113;q
+          </p>
+          <h1 style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 300, lineHeight: 1.2, margin: "0 0 1rem" }}>
+            Your energy is your currency.
+            <br />
+            <em>Your energy at rest is your frequency.</em>
+          </h1>
+          <p style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(1rem, 1.1vw, 1.1rem)", lineHeight: 1.6, margin: "0 0 0.5rem", opacity: 0.82 }}>
+            Book &amp; Apparel for people who train by feel.
+          </p>
+          <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 2rem" }}>
+            Early Access
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
+            <a
+              href={SHOP_URL || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
+            >
+              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
+              Shop the Fr&#x113;q Shop
+            </a>
+            <Link
+              href="/story"
+              style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
+            >
+              Our story
+            </Link>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
 // ── Panel 2: Welcome / about the brand ───────────────────────────────────────
+// PRIVACY: opening sentence with partner name removed. Alt text corrected to generic description.
 function WelcomePanel() {
-  // Copy in variables so no string literals appear in JSX attributes.
-  const p1 = "That's me and Michelle.";
   const p2 = "I spent thirty-five years on the radio, talking to a city every morning. When that chapter ended, I had to figure out who I was without the microphone, and somewhere in that I started making things I actually wanted to wear and live in. Things that reminded me to be where I am, with the people I'm with. I'm wearing our flagship tee right here, the one I made first. It's in the shop.";
   const p3 = "This is the first collection. It wasn't built by a company. It was made by two people who needed it, who figured you might too.";
   const p4 = "A portion of every order goes to St. Jude Children's Research Hospital, because a brand about being present should help the families fighting to have more time. Everything's made to feel good on, the kind of soft you reach for without thinking. This is early access, a limited first collection. You found it early. Maybe it found you.";
@@ -170,46 +222,87 @@ function WelcomePanel() {
     opacity: 0.92,
   };
 
+  const textContent = (
+    <>
+      <h2 style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(1.6rem, 6vw, 2.2rem)", fontWeight: 300, lineHeight: 1.2, margin: "0 0 18px" }}>
+        This is where it started.
+      </h2>
+      <p style={bodyStyle}>{p2}</p>
+      <p style={bodyStyle}>{p3}</p>
+      <p style={{ ...bodyStyle, margin: "0 0 20px" }}>{p4}</p>
+    </>
+  );
+
   return (
     <section
+      className="hf-feed-panel"
       style={{
-        position: "relative",
         height: "100svh",
         scrollSnapAlign: "start",
         overflow: "hidden",
         backgroundColor: "var(--color-hero-bg)",
         flexShrink: 0,
+        position: "relative",
       }}
     >
-      <Image
-        src="/images/welcome-couple.png"
-        alt="Eric and Michelle by firelight"
-        fill
-        sizes="100vw"
-        quality={85}
-        style={{ objectFit: "cover", objectPosition: "center" }}
-      />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(7,5,10,0.88) 0%, rgba(7,5,10,0.55) 55%, rgba(7,5,10,0.18) 100%)" }} />
+      {/* Image cell */}
+      <div className="hf-panel-media">
+        <Image
+          src="/images/welcome-couple.png"
+          alt="Two people by firelight"
+          fill
+          sizes="(min-width: 1024px) 56vw, 100vw"
+          quality={85}
+          style={{ objectFit: "cover", objectPosition: "center 35%" }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(7,5,10,0.88) 0%, rgba(7,5,10,0.55) 55%, rgba(7,5,10,0.18) 100%)" }} />
 
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "120px", overflowY: "auto", padding: "52px 20px 0" }}>
-        <div style={{ maxWidth: "480px" }}>
-          <h2 style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(1.6rem, 6vw, 2.2rem)", fontWeight: 300, lineHeight: 1.2, margin: "0 0 18px" }}>
-            This is where it started.
-          </h2>
-          <p style={bodyStyle}>{p1}</p>
-          <p style={bodyStyle}>{p2}</p>
-          <p style={bodyStyle}>{p3}</p>
-          <p style={{ ...bodyStyle, margin: "0 0 20px" }}>{p4}</p>
-          <Link
-            href="/story"
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(0.95rem, 3vw, 1.05rem)", fontStyle: "italic", color: "var(--color-hero-text)", textDecoration: "underline", textUnderlineOffset: "4px", textDecorationColor: "rgba(237,229,212,0.45)", opacity: 0.8 }}
-          >
-            Read our story &#x2192;
-          </Link>
+        {/* Mobile-only: scrollable text overlay */}
+        <div className="hf-panel-mobile-only">
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "120px", overflowY: "auto", padding: "52px 20px 0" }}>
+            <div style={{ maxWidth: "480px" }}>
+              {textContent}
+              <Link
+                href="/story"
+                style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(0.95rem, 3vw, 1.05rem)", fontStyle: "italic", color: "var(--color-hero-text)", textDecoration: "underline", textUnderlineOffset: "4px", textDecorationColor: "rgba(237,229,212,0.45)", opacity: 0.8 }}
+              >
+                Read our story &#x2192;
+              </Link>
+            </div>
+          </div>
+          <PanelCTA />
         </div>
       </div>
 
-      <PanelCTA />
+      {/* Desktop: right text column */}
+      <div className="hf-panel-desktop-col">
+        <div className="hf-panel-desktop-inner">
+          {textContent}
+          <Link
+            href="/story"
+            style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--color-hero-text)", textDecoration: "underline", textUnderlineOffset: "4px", textDecorationColor: "rgba(237,229,212,0.45)", opacity: 0.8, display: "block", marginBottom: "2rem" }}
+          >
+            Read our story &#x2192;
+          </Link>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
+            <a
+              href={SHOP_URL || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
+            >
+              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
+              Shop the Fr&#x113;q Shop
+            </a>
+            <Link
+              href="/story"
+              style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
+            >
+              Our story
+            </Link>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -223,64 +316,101 @@ function FoundersTeePanel() {
 
   return (
     <section
+      className="hf-feed-panel"
       style={{
-        position: "relative",
         height: "100svh",
         scrollSnapAlign: "start",
         overflow: "hidden",
         backgroundColor: "var(--color-hero-bg)",
         flexShrink: 0,
+        position: "relative",
       }}
     >
-      {/* Image shown whole (contain) so the baked-in headline + body never crop */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "352px" }}>
-        <Image
-          src="/images/founders-tee.png"
-          alt="Founders Tee"
-          fill
-          sizes="100vw"
-          quality={85}
-          style={{ objectFit: "contain", objectPosition: "center" }}
-        />
+      {/* Image cell */}
+      <div className="hf-panel-media">
+        {/* Image shown whole (contain) so the baked-in headline + body never crop */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "352px" }}>
+          <Image
+            src="/images/founders-tee.png"
+            alt="Founders Tee"
+            fill
+            sizes="(min-width: 1024px) 56vw, 100vw"
+            quality={85}
+            style={{ objectFit: "contain", objectPosition: "center" }}
+          />
+        </div>
+
+        {/* Mobile-only: caption + capture, stacked just above the CTA */}
+        <div className="hf-panel-mobile-only">
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: "150px",
+              padding: "0 20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "14px",
+            }}
+          >
+            <p
+              style={{
+                color: "var(--color-hero-text)",
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontSize: "1rem",
+                lineHeight: 1.5,
+                textAlign: "center",
+                maxWidth: "440px",
+                margin: "0 auto",
+                opacity: 0.85,
+              }}
+            >
+              {caption}
+            </p>
+            <PanelEmailCapture />
+          </div>
+          <PanelCTA />
+        </div>
       </div>
 
-      {/* Scarcity caption + compact capture, stacked just above the CTA */}
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: "150px",
-          padding: "0 20px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "14px",
-        }}
-      >
-        <p
-          style={{
-            color: "var(--color-hero-text)",
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "1rem",
-            lineHeight: 1.5,
-            textAlign: "center",
-            maxWidth: "440px",
-            margin: "0 auto",
-            opacity: 0.85,
-          }}
-        >
-          {caption}
-        </p>
-        <PanelEmailCapture />
+      {/* Desktop: right text column */}
+      <div className="hf-panel-desktop-col">
+        <div className="hf-panel-desktop-inner">
+          <p style={{ color: "var(--color-amber)", fontFamily: "var(--font-cinzel), serif", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", margin: "0 0 1.25rem" }}>
+            Founders Tee
+          </p>
+          <p style={{ color: "var(--color-hero-text)", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(1rem, 1.2vw, 1.15rem)", lineHeight: 1.65, margin: "0 0 1.75rem", opacity: 0.88 }}>
+            {caption}
+          </p>
+          <div style={{ marginBottom: "1.75rem" }}>
+            <PanelEmailCapture />
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
+            <a
+              href={SHOP_URL || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
+            >
+              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
+              Shop the Fr&#x113;q Shop
+            </a>
+            <Link
+              href="/story"
+              style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
+            >
+              Our story
+            </Link>
+          </div>
+        </div>
       </div>
-
-      <PanelCTA />
     </section>
   );
 }
 
-// ── CTA bar — identical position on every panel ───────────────────────────────
-function PanelCTA() {
+// ── CTA bar — identical position on every mobile panel ───────────────────────
+function PanelCTA({ isHero = false }: { isHero?: boolean }) {
   return (
     <div style={{ position: "absolute", bottom: "32px", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", padding: "0 20px" }}>
       <a
@@ -292,12 +422,14 @@ function PanelCTA() {
         <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
         Shop the Fr&#x113;q Shop
       </a>
-      <Link
-        href="/story"
-        style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.5, textDecoration: "none" }}
-      >
-        Fr&#x113;q Extras
-      </Link>
+      {isHero ? null : (
+        <Link
+          href="/story"
+          style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.5, textDecoration: "none" }}
+        >
+          Our story
+        </Link>
+      )}
     </div>
   );
 }
@@ -310,14 +442,25 @@ function EmailSection() {
     >
       <div style={{ maxWidth: "480px", margin: "0 auto", width: "100%" }}>
         <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-muted)", marginBottom: "1.5rem", opacity: 0.7 }}>
-          Grow with us
+          Stay in the frequency
         </p>
         <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.18rem", lineHeight: 1.65, marginBottom: "1.75rem" }}>
-          If you&rsquo;d like to grow with us, we&rsquo;d love to keep you up to date. New pieces, the book, wherever this goes. We&rsquo;ll only reach out when there&rsquo;s something worth sharing.
+          We&rsquo;re building this in the open. New pieces, the book in progress, the moments that shape it. We&rsquo;ll only reach out when there&rsquo;s something worth sharing.
         </p>
         <EmailCapture />
-        <footer style={{ marginTop: "3.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(58,44,28,0.12)", textAlign: "center", fontFamily: "var(--font-cinzel), serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-content-text)", opacity: 0.4 }}>
-          &copy; {new Date().getFullYear()} Human Fr&#x113;q &middot; All rights reserved
+        <footer style={{ marginTop: "3.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(58,44,28,0.12)", textAlign: "center" }}>
+          <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "0.95rem", lineHeight: 1.5, color: "var(--color-content-text)", opacity: 0.55, margin: "0 0 1rem" }}>
+            Finished the book?{" "}
+            <Link
+              href="/firstsignal"
+              style={{ color: "var(--color-content-text)", textDecoration: "underline", textUnderlineOffset: "3px", opacity: 0.9, fontStyle: "italic" }}
+            >
+              The First Signal &#x2192;
+            </Link>
+          </p>
+          <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-content-text)", opacity: 0.4, margin: 0 }}>
+            &copy; {new Date().getFullYear()} Human Fr&#x113;q &middot; All rights reserved
+          </p>
         </footer>
       </div>
     </section>
