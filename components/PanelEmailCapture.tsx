@@ -110,7 +110,6 @@ export default function PanelEmailCapture() {
                 color: "#07050a",
                 fontFamily: "var(--font-cormorant), Georgia, serif",
                 fontSize: "1rem",
-                outline: "none",
               }}
             />
             <button

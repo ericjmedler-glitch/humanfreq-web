@@ -68,15 +68,6 @@ export default function FirstSignalGate({ tiktokUrl }: FirstSignalGateProps) {
               backgroundColor: "var(--color-content-text)",
               border: "none",
               cursor: "pointer",
-              outline: "none",
-            }}
-            onFocus={(e) => {
-              e.currentTarget.style.outline =
-                "2px solid var(--color-amber)";
-              e.currentTarget.style.outlineOffset = "3px";
-            }}
-            onBlur={(e) => {
-              e.currentTarget.style.outline = "none";
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.8";

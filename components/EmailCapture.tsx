@@ -51,7 +51,7 @@ export default function EmailCapture() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className="w-full rounded-lg border px-4 py-3 text-base outline-none transition-colors"
+        className="w-full rounded-lg border px-4 py-3 text-base transition-colors"
         style={{
           backgroundColor: "rgba(255,255,255,0.6)",
           borderColor: "rgba(58,44,28,0.3)",

@@ -134,6 +134,26 @@ body, html {
   }
 }
 
+/* ── Focus-visible indicators ────────────────────────────────────────────────── */
+/* WCAG 2.1 SC 2.4.7 — keyboard focus must be visible on all interactive elements */
+/* Amber (#c09030) ring works against both dark (#07050a) and light (#f3ede0) bg  */
+/* outline does not cause layout shift — it is painted outside the layout box      */
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Inputs and textareas: inset glow ring so focus doesn't fight the field border */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px rgba(192, 144, 48, 0.22);
+}
+
 /* ── Reduced motion ──────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
