@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // Confirmation copy: " ; )" must render as THREE LITERAL CHARACTERS — never an emoji.
 const CONFIRMATION =
-  "Your inbox isn’t a human Frēq, so if you don’t see us, peek in spam. The AI running things back there is still “working on its presence.”  ; )";
+  "You’re on the list. We’ll only reach out when it matters. ; )";
 
 export default function EmailCapture() {
   const [email, setEmail] = useState("");
@@ -72,7 +72,7 @@ export default function EmailCapture() {
           letterSpacing: "0.12em",
         }}
       >
-        {state === "loading" ? "Sending…" : "Grow with us →"}
+        {state === "loading" ? "Sending…" : "Notify me"}
       </button>
       {state === "error" && (
         <p className="text-sm" style={{ color: "#a05030" }}>
