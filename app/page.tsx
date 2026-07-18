@@ -48,10 +48,10 @@ const PANELS: Array<{
     textPosition: "left",
     objectPosition: "center 40%",
   },
-  // Panel 7 — Hoodie (stronger scrim, signed by Eric)
+  // Panel 7 — Founders Tee (stronger scrim, signed by Eric)
     {
-    image: "/images/done-enough.jpeg",
-    alt: "Hoodie, quiet evening at home",
+    image: "/images/founders-tee-approved-master-v1.jpg",
+    alt: "Eric Medler wearing the Founders Tee, HUMAN FRĒQ",
     headline: "Done enough.",
     body: "Some days ask enough of you. This is the layer you pull on when the work is finished, the noise can stop, and you can finally come back to yourself. Soft, familiar, and made for the moment the whole day goes quiet.",
     textPosition: "upper",
@@ -209,7 +209,7 @@ function HeroPanel() {
 function WelcomePanel() {
   const p2 = "I spent thirty-five years on the radio, talking to a city every morning. When that chapter ended, I had to figure out who I was without the microphone, and somewhere in that I started making things I actually wanted to wear and live in. Things that reminded me to be where I am, with the people I'm with. I'm wearing our flagship tee right here, the one I made first. It's in the shop.";
   const p3 = "HUMAN FRĒQ began when Eric Medler started making the things he wanted to wear, use, and live with—pieces that helped him return to what mattered. The book came first. The brand grew from the same idea.";
-  const p4 = "A portion of every order goes to St. Jude Children's Research Hospital, because a brand about being present should help the families fighting to have more time. Everything's made to feel good on, the kind of soft you reach for without thinking. This is early access, a limited first collection. You found it early. Maybe it found you.";
+  const p4 = "Everything's made to feel good on, the kind of soft you reach for without thinking. This is early access, a limited first collection. You found it early. Maybe it found you.";
 
   const bodyStyle: React.CSSProperties = {
     color: "var(--color-hero-text)",
