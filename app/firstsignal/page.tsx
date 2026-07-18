@@ -66,6 +66,7 @@ export default function FirstSignalPage() {
 
       {/* ── MAIN ───────────────────────────────────────────────────────────── */}
       <main
+        id="main-content"
         className="flex-1 px-5 pb-20 max-w-lg mx-auto w-full"
         style={{
           backgroundColor: "var(--color-content-bg)",

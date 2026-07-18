@@ -28,6 +28,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shop.humanfreq.com"),
   title: "Human Frēq — Your energy at rest is your frequency.",
   description:
     "Move at the frequency of your body. A book and apparel collection for people who train by feel. Early Access.",

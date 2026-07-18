@@ -330,7 +330,7 @@ function FoundersTeePanel() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "352px" }}>
           <Image
             src="/images/founders-tee.png"
-            alt="Founders Tee"
+            alt="Eric Medler wearing the Founders Tee, HUMAN FRĒQ"
             fill
             sizes="(min-width: 1024px) 56vw, 100vw"
             quality={85}

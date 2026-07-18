@@ -1,5 +1,35 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import ShopButton from "@/components/ShopButton";
+
+export const metadata: Metadata = {
+  title: "The Story — Human Frēq",
+  description:
+    "Thirty-five years on the radio. Then the quiet. Eric Medler on what came after, and why he made Human Frēq.",
+  alternates: {
+    canonical: "/story",
+  },
+  openGraph: {
+    title: "The Story — Human Frēq",
+    description:
+      "Thirty-five years on the radio. Then the quiet. Eric Medler on what came after, and why he made Human Frēq.",
+    url: "/story",
+    images: [
+      {
+        url: "/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png",
+        width: 1679,
+        height: 1679,
+        alt: "Human Frēq logomark",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "The Story — Human Frēq",
+    description:
+      "Thirty-five years on the radio. Then the quiet. Eric Medler on what came after, and why he made Human Frēq.",
+  },
+};
 
 export default function StoryPage() {
   return (
@@ -39,6 +69,7 @@ export default function StoryPage() {
 
       {/* ── STORY BODY ───────────────────────────────────────────────────── */}
       <main
+        id="main-content"
         className="flex-1 px-5 pb-16 max-w-lg mx-auto w-full"
         style={{ backgroundColor: "var(--color-content-bg)", color: "var(--color-content-text)" }}
       >
