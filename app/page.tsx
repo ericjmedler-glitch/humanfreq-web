@@ -25,7 +25,7 @@ const PANELS: Array<{
     image: "/images/hero.png",
     alt: "Leggings fit shot",
     headline: "Made for the life you actually live.",
-    body: "My girlfriend's been an athlete her whole life, so trust me, she knows the difference between good leggings and the rest. Fine was never going to fly with her. So we kept looking until we found ones she actually loved, and put our mark on them. She wears them to the studio, on the trail, and on the weekends that belong to nobody but her.",
+    body: "Leggings should move when you move, stay comfortable when the day slows down, and earn their place in the drawer. This first Human Frēq collection is built for training, walking, travel, and the hours in between. The standard is simple: they should feel good enough that you stop thinking about them.",
     textPosition: "left",
     objectPosition: "center 60%",
     emailCapture: true,
@@ -47,18 +47,6 @@ const PANELS: Array<{
     body: "A few weeks ago I started drinking a gallon of water a day. Sounds simple. But somewhere in there I noticed something I didn't expect, that good water out of a good bottle just feels better. So that's the bottle we went and found. Because what you put in your body matters, and the small stuff turns out to be the big stuff.",
     textPosition: "left",
     objectPosition: "center 40%",
-  },
-  // Panel 7 — Hoodie (stronger scrim, signed by Eric)
-  // PRIVACY: partner name replaced with "the girl I met" per locked privacy rule.
-  {
-    image: "/images/done-enough.jpeg",
-    alt: "Hoodie, quiet evening at home",
-    headline: "Done enough.",
-    body: "The journey to get here has been long, and honestly, sometimes out of my control. The one thing I wanted was to throw this on, get on the couch, and have the girl I met drop her feet in my lap. Kick on the AC, pull on the hoodie, and the whole day goes quiet. I've done enough. Now we just sit here.",
-    textPosition: "upper",
-    objectPosition: "center 25%",
-    strongScrim: true,
-    signature: "eric",
   },
   // Panel 8 — Tee / Garden (closing panel)
   {
@@ -85,7 +73,7 @@ export default function FeedPage() {
       {/* Panel 1 — Hero (Landing.png = golden-hour walking women, ad match) */}
       <HeroPanel />
 
-      {/* Panel 2 — Welcome / about the brand (welcome-couple.png, firelight) */}
+      {/* Panel 2 — Welcome / about the brand */}
       <WelcomePanel />
 
       {/* Panel 3 — Founders Tee (headline + body baked into the image) */}
@@ -207,11 +195,12 @@ function HeroPanel() {
 }
 
 // ── Panel 2: Welcome / about the brand ───────────────────────────────────────
-// PRIVACY: opening sentence with partner name removed. Alt text corrected to generic description.
+// Founder-truth correction: sole-creator narrative. Image replaced with brand
+// gradient — no person depicted.
 function WelcomePanel() {
-  const p2 = "I spent thirty-five years on the radio, talking to a city every morning. When that chapter ended, I had to figure out who I was without the microphone, and somewhere in that I started making things I actually wanted to wear and live in. Things that reminded me to be where I am, with the people I'm with. I'm wearing our flagship tee right here, the one I made first. It's in the shop.";
-  const p3 = "This is the first collection. It wasn't built by a company. It was made by two people who needed it, who figured you might too.";
-  const p4 = "A portion of every order goes to St. Jude Children's Research Hospital, because a brand about being present should help the families fighting to have more time. Everything's made to feel good on, the kind of soft you reach for without thinking. This is early access, a limited first collection. You found it early. Maybe it found you.";
+  const p2 = "I spent thirty-five years on the radio, talking to one person at a time while a city listened. When that chapter ended, I had to figure out who I was without the microphone. I started writing what I needed to hear. That writing became the book. Human Frēq grew from there.";
+  const p3 = "I created the first products as reminders I could carry into ordinary life—what I wore, what I reached for, and what helped me come back to the moment I was actually in.";
+  const p4 = "This is the beginning of a larger brand: the book, apparel, comfortwear, daily tools, First Signal, and the community that will give the work its meaning.";
 
   const bodyStyle: React.CSSProperties = {
     color: "var(--color-hero-text)",
@@ -245,17 +234,20 @@ function WelcomePanel() {
         position: "relative",
       }}
     >
-      {/* Image cell */}
+      {/* Image cell — brand gradient field, no person depicted */}
       <div className="hf-panel-media">
-        <Image
-          src="/images/welcome-couple.png"
-          alt="Two people by firelight"
-          fill
-          sizes="(min-width: 1024px) 56vw, 100vw"
-          quality={85}
-          style={{ objectFit: "cover", objectPosition: "center 35%" }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(7,5,10,0.88) 0%, rgba(7,5,10,0.55) 55%, rgba(7,5,10,0.18) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 30% 60%, rgba(192,144,48,0.13) 0%, transparent 70%), linear-gradient(160deg, #0f0c07 0%, #0a0a0a 40%, #07050a 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.07 }}>
+          {/* Ensō / wordmark mark — brand field only */}
+          <Image
+            src="/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png"
+            alt=""
+            aria-hidden="true"
+            width={320}
+            height={320}
+            style={{ objectFit: "contain" }}
+          />
+        </div>
 
         {/* Mobile-only: scrollable text overlay */}
         <div className="hf-panel-mobile-only">
@@ -445,7 +437,7 @@ function EmailSection() {
           Stay in the frequency
         </p>
         <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.18rem", lineHeight: 1.65, marginBottom: "1.75rem" }}>
-          We&rsquo;re building this in the open. New pieces, the book in progress, the moments that shape it. We&rsquo;ll only reach out when there&rsquo;s something worth sharing.
+          Human Fr&#x113;q is growing in the open: new pieces, the book, First Signal, and the ideas that shape the brand. We&#x2019;ll only reach out when there is something worth carrying forward.
         </p>
         <EmailCapture />
         <footer style={{ marginTop: "3.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(58,44,28,0.12)", textAlign: "center" }}>

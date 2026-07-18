@@ -1,72 +1,42 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import ShopButton from "@/components/ShopButton";
+import { SHOP_URL } from "@/config/site";
 
-// Image slot helper — drop files in public/images/ and swap out the src.
-// Each slot shows alt text + a labeled placeholder until the real photo lands.
-function PhotoSlot({
-  src,
-  alt,
-  label,
-}: {
-  src: string;
-  alt: string;
-  label: string;
-}) {
+export const metadata: Metadata = {
+  title: "Our Story — Human Frēq",
+  description:
+    "Eric Medler created Human Frēq from a personal reset. After thirty-five years of morning radio, the microphone went quiet and the questions got louder.",
+};
+
+// Section heading component — keeps visual treatment consistent
+function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <figure className="my-10 -mx-5">
-      {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          width={800}
-          height={500}
-          className="w-full object-cover"
-          style={{ maxHeight: "420px" }}
-        />
-      ) : (
-        // Placeholder shown until Eric drops the real photo in
-        <div
-          className="flex items-center justify-center text-center px-6"
-          style={{
-            backgroundColor: "rgba(58,44,28,0.08)",
-            minHeight: "220px",
-            borderTop: "1px solid rgba(58,44,28,0.15)",
-            borderBottom: "1px solid rgba(58,44,28,0.15)",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "var(--font-dm-mono), monospace",
-              fontSize: "0.75rem",
-              color: "var(--color-muted)",
-              letterSpacing: "0.08em",
-            }}
-          >
-            [ PHOTO SLOT — {label} ]
-            <br />
-            Drop file at public/images/{src.replace("/images/", "")}
-          </p>
-        </div>
-      )}
-      {alt && src && (
-        <figcaption
-          className="mt-2 px-5 text-center"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "0.85rem",
-            fontStyle: "italic",
-            color: "var(--color-muted)",
-          }}
-        >
-          {alt}
-        </figcaption>
-      )}
-    </figure>
+    <p
+      style={{
+        fontFamily: "var(--font-cinzel), serif",
+        fontSize: "0.6rem",
+        letterSpacing: "0.22em",
+        textTransform: "uppercase",
+        color: "var(--color-amber)",
+        margin: "0 0 1rem",
+        opacity: 0.85,
+      }}
+    >
+      {children}
+    </p>
   );
 }
 
 export default function StoryPage() {
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: "var(--font-cormorant), Georgia, serif",
+    fontSize: "clamp(1.05rem, 3.5vw, 1.18rem)",
+    lineHeight: 1.68,
+    color: "var(--color-content-text)",
+    margin: "0 0 1.25rem",
+  };
+
   return (
     <>
       {/* ── PAGE HEADER ──────────────────────────────────────────────────── */}
@@ -86,8 +56,22 @@ export default function StoryPage() {
             textDecoration: "none",
           }}
         >
-          ← Human Frēq
+          &#x2190; Human Fr&#x113;q
         </Link>
+
+        <p
+          style={{
+            fontFamily: "var(--font-cinzel), serif",
+            fontSize: "0.6rem",
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "var(--color-amber)",
+            margin: "0 0 1rem",
+            opacity: 0.75,
+          }}
+        >
+          Our Story
+        </p>
 
         <h1
           style={{
@@ -96,198 +80,188 @@ export default function StoryPage() {
             fontWeight: 300,
             lineHeight: 1.25,
             color: "var(--color-content-text)",
+            margin: 0,
           }}
         >
-          About the Human Frēq whose journey brought you here
+          It began with one question: what actually matters?
         </h1>
       </header>
 
       {/* ── STORY BODY ───────────────────────────────────────────────────── */}
       <main
         className="flex-1 px-5 pb-16 max-w-lg mx-auto w-full"
-        style={{ backgroundColor: "var(--color-content-bg)", color: "var(--color-content-text)" }}
+        style={{ backgroundColor: "var(--color-content-bg)" }}
       >
-        {/* ── Teaser recap (bridges from landing page) ── */}
-        <div
-          className="space-y-5 mb-8"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "1.18rem",
-            lineHeight: 1.65,
-          }}
-        >
-          <p>
-            I spent thirty-five years on the radio. Talking to a city in the
-            morning, mostly. It was a good run and I loved it, and one day it
-            ended, the way things do.
-          </p>
-          <p>
-            What came after is the real story. I had to figure out who I was
-            without the microphone, and that turned out to be harder and better
-            than I expected. I started writing it all down. That writing became a
-            book. The working title is <em>Human Frēq</em>, and the name came
-            before any of this.
+        {/* Opening */}
+        <div style={{ marginBottom: "3rem" }}>
+          <p style={bodyStyle}>
+            Eric Medler created Human Fr&#x113;q from a personal reset. After
+            thirty-five years of morning radio, the microphone went quiet and the
+            questions got louder. He began writing what he needed to hear. The
+            book came first. The brand followed.
           </p>
         </div>
 
-        {/* PHOTO SLOT 1 — outdoors / trail / nature beat */}
-        <PhotoSlot
-          src=""
-          alt=""
-          label="Eric outdoors — trail, nature, movement beat"
+        {/* Section: From Voice to Page */}
+        <div style={{ marginBottom: "3rem" }}>
+          <SectionHeading>From Voice to Page</SectionHeading>
+          <p style={bodyStyle}>
+            For decades, Eric&rsquo;s work was built around speaking to one
+            person at a time. Human Fr&#x113;q carries that same intimacy
+            forward&mdash;not as nostalgia, but as a useful way to move through
+            modern life with more presence and less noise.
+          </p>
+        </div>
+
+        {/* Section: From Page to Daily Life */}
+        <div style={{ marginBottom: "3rem" }}>
+          <SectionHeading>From Page to Daily Life</SectionHeading>
+          <p style={bodyStyle}>
+            The ideas did not stay on the page. They became apparel,
+            comfortwear, daily tools, First Signal, and the beginnings of a
+            wider world built to help people protect their energy and return to
+            what matters.
+          </p>
+        </div>
+
+        {/* Section: A Brand People Can Make Their Own */}
+        <div style={{ marginBottom: "3.5rem" }}>
+          <SectionHeading>A Brand People Can Make Their Own</SectionHeading>
+          <p style={bodyStyle}>
+            Human Fr&#x113;q was born from Eric&rsquo;s philosophy, but it will
+            earn its future through the people who wear it, read it, use it, and
+            give it meaning. The brand points in a direction. The community
+            decides how far it can go.
+          </p>
+        </div>
+
+        {/* Divider */}
+        <hr
+          style={{
+            border: "none",
+            borderTop: "1px solid rgba(58,44,28,0.15)",
+            margin: "0 0 2.5rem",
+          }}
         />
 
-        {/* ── Full story — [ERIC TO EDIT] near-final draft ── */}
-        <div
-          className="space-y-5"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "1.18rem",
-            lineHeight: 1.65,
-          }}
-        >
-          <p>
-            Here&rsquo;s how the clothing happened. While I was writing, I wanted
-            something I could put on that reminded me to stay in frequency with
-            who I actually am. Not a slogan. Just a feeling. You know that moment
-            when you pull on the right t-shirt and your whole body goes{" "}
-            <em>ahh</em> — and for a second you&rsquo;re completely here? I
-            wanted that on purpose. So I made it. For me first.
-          </p>
-        </div>
-
-        {/* PHOTO SLOT 2 — casual / coffee / writing beat */}
-        <PhotoSlot
-          src=""
-          alt=""
-          label="Eric writing or coffee — personal, quiet beat"
-        />
-
-        <div
-          className="space-y-5"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "1.18rem",
-            lineHeight: 1.65,
-          }}
-        >
-          <p>
-            My girlfriend loves leggings. Not just for runs and workouts, but for
-            weekends that are all hers. When it&rsquo;s her time, it&rsquo;s
-            leggings time. So when we made ours, &ldquo;fine&rdquo; was never
-            going to cut it. We found the best ones we could and put our mark on
-            them. And I&rsquo;ll say it, she looks amazing in them. This is the
-            early collection. Down the road, she&rsquo;s going to design the next
-            generation of Human Frēq gear herself. For now, we picked the best
-            out there and made it ours.
-          </p>
-
-          <p>
-            I&rsquo;ll tell you what&rsquo;s going on with me right now, too.
-            I&rsquo;m in the middle of 75 Hard, a program I&rsquo;m using to
-            reset a few things. One of the rules is a gallon of water a day.
-            I&rsquo;m about three weeks in as I write this, and drinking that
-            much, I&rsquo;ve learned something I didn&rsquo;t expect. Good water,
-            from a good bottle, actually feels different. So we picked the
-            highest-quality bottle we could find, because what we put in our
-            bodies matters.
-          </p>
-        </div>
-
-        {/* PHOTO SLOT 3 — son / Pacific Northwest / outdoor gear beat */}
-        <PhotoSlot
-          src=""
-          alt=""
-          label="Son / Pacific Northwest / van life — outdoor line beat"
-        />
-
-        <div
-          className="space-y-5"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "1.18rem",
-            lineHeight: 1.65,
-          }}
-        >
-          <p>
-            I made the first few things for myself. Then I realized other people
-            do other things, and they could use the reminder too. People like my
-            kids. My son has spent two years in the Pacific Northwest, living out
-            of his van with his dog, learning to handle whatever the elements
-            throw at him. He knows gear that doesn&rsquo;t fight you, that just
-            works and lets you stay at peace in nature. I&rsquo;m hoping
-            he&rsquo;ll help me build the Human Frēq outdoor line someday.
-          </p>
-        </div>
-
-        {/* ── Founder note — handwriting-style web font (Caveat) ─────────── */}
-        {/* [ERIC TO EDIT] — this is the personal close; edit freely */}
-        <div
-          className="my-12 px-6 py-8 rounded-xl"
-          style={{
-            backgroundColor: "rgba(192,144,48,0.08)",
-            borderLeft: "3px solid var(--color-amber)",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "var(--font-caveat), cursive",
-              fontSize: "1.4rem",
-              lineHeight: 1.55,
-              color: "var(--color-content-text)",
-            }}
-          >
-            <p>
-              It started as a reminder I made for myself. It&rsquo;s becoming
-              something bigger than me, but it&rsquo;s still the same idea.
-              Wherever you go, something&rsquo;s there to bring you back to right
-              here.
-            </p>
-            <p className="mt-4">I&rsquo;m glad you found your way here. Welcome.</p>
-            <p
-              className="mt-6"
-              style={{ fontSize: "1.25rem", color: "var(--color-amber)" }}
-            >
-              — Eric
-            </p>
-          </div>
-        </div>
-
-        {/* ── Back to shop CTA (text, not competing with sticky button) ─── */}
-        <div className="mt-4 text-center">
-          <Link
-            href="/"
+        {/* Conversion paths */}
+        <nav aria-label="Next steps" style={{ marginBottom: "3rem" }}>
+          <p
             style={{
               fontFamily: "var(--font-cinzel), serif",
-              fontSize: "0.65rem",
-              letterSpacing: "0.18em",
+              fontSize: "0.6rem",
+              letterSpacing: "0.2em",
               textTransform: "uppercase",
               color: "var(--color-muted)",
-              textDecoration: "none",
+              margin: "0 0 1.25rem",
+              opacity: 0.7,
             }}
           >
-            ← Back to Human Frēq
-          </Link>
-        </div>
+            Where to go next
+          </p>
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.85rem",
+            }}
+          >
+            <li>
+              {/* Book URL not yet configured — using shop as nearest proxy until
+                  a governed /book route exists. Documented in QA. */}
+              <a
+                href={SHOP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontSize: "1.05rem",
+                  fontStyle: "italic",
+                  color: "var(--color-content-text)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  textDecorationColor: "rgba(58,44,28,0.35)",
+                }}
+              >
+                Start with the Book &#x2192;
+              </a>
+            </li>
+            <li>
+              <a
+                href={SHOP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontSize: "1.05rem",
+                  fontStyle: "italic",
+                  color: "var(--color-content-text)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  textDecorationColor: "rgba(58,44,28,0.35)",
+                }}
+              >
+                Shop the Collection &#x2192;
+              </a>
+            </li>
+            <li>
+              <Link
+                href="/firstsignal"
+                style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontSize: "1.05rem",
+                  fontStyle: "italic",
+                  color: "var(--color-content-text)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  textDecorationColor: "rgba(58,44,28,0.35)",
+                }}
+              >
+                Experience The First Signal &#x2192;
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/"
+                style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontSize: "1.05rem",
+                  fontStyle: "italic",
+                  color: "var(--color-content-text)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  textDecorationColor: "rgba(58,44,28,0.35)",
+                }}
+              >
+                &#x2190; Back to Human Fr&#x113;q
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
         {/* Footer */}
         <footer
-          className="mt-16 pt-8 border-t text-center"
           style={{
-            borderColor: "rgba(58,44,28,0.12)",
+            marginTop: "2rem",
+            paddingTop: "1.5rem",
+            borderTop: "1px solid rgba(58,44,28,0.12)",
+            textAlign: "center",
             fontFamily: "var(--font-cinzel), serif",
-            fontSize: "0.68rem",
+            fontSize: "0.65rem",
             letterSpacing: "0.15em",
-            color: "var(--color-content-text)",
-            opacity: 0.45,
             textTransform: "uppercase",
+            color: "var(--color-content-text)",
+            opacity: 0.4,
           }}
         >
           &copy; {new Date().getFullYear()} Human Fr&#x113;q &middot; All rights reserved
         </footer>
       </main>
 
-      {/* Sticky amber shop button — same as landing page */}
+      {/* Sticky amber shop button */}
       <ShopButton />
     </>
   );
