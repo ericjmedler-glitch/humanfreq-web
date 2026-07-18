@@ -185,7 +185,7 @@ function HeroPanel() {
           </p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
             <a
-              href={SHOP_URL || "#"}
+              href={SHOP_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
@@ -286,7 +286,7 @@ function WelcomePanel() {
           </Link>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
             <a
-              href={SHOP_URL || "#"}
+              href={SHOP_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
@@ -388,7 +388,7 @@ function FoundersTeePanel() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
             <a
-              href={SHOP_URL || "#"}
+              href={SHOP_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
@@ -414,7 +414,7 @@ function PanelCTA({ isHero = false }: { isHero?: boolean }) {
   return (
     <div style={{ position: "absolute", bottom: "32px", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", padding: "0 20px" }}>
       <a
-        href={SHOP_URL || "#"}
+        href={SHOP_URL}
         target="_blank"
         rel="noopener noreferrer"
         style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}

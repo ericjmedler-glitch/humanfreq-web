@@ -190,7 +190,7 @@ export default function FeedPanel({
               padding: "0 20px",
             }}
           >
-            <a href={SHOP_URL || "#"} target="_blank" rel="noopener noreferrer" style={shopBtnStyle}>
+            <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={shopBtnStyle}>
               <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
               Shop the Fr&#x113;q Shop
             </a>
@@ -257,7 +257,7 @@ export default function FeedPanel({
               gap: "12px",
             }}
           >
-            <a href={SHOP_URL || "#"} target="_blank" rel="noopener noreferrer" style={shopBtnStyle}>
+            <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={shopBtnStyle}>
               <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
               Shop the Fr&#x113;q Shop
             </a>

@@ -7,7 +7,7 @@ import { SHOP_URL } from "@/config/site";
 export default function HeroShopButton() {
   return (
     <a
-      href={SHOP_URL || "#"}
+      href={SHOP_URL}
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center gap-3 rounded-full transition-colors duration-200 select-none"

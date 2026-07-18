@@ -12,7 +12,7 @@ export default function ShopButton() {
       style={{ background: "linear-gradient(to top, rgba(7,5,10,0.85) 0%, transparent 100%)" }}
     >
       <a
-        href={SHOP_URL || "#"}
+        href={SHOP_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-3 rounded-full px-7 text-lg font-semibold tracking-wide shadow-lg transition-colors duration-200 select-none"
