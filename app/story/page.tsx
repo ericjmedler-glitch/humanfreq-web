@@ -1,70 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+﻿import Link from "next/link";
 import ShopButton from "@/components/ShopButton";
-
-// Image slot helper — drop files in public/images/ and swap out the src.
-// Each slot shows alt text + a labeled placeholder until the real photo lands.
-function PhotoSlot({
-  src,
-  alt,
-  label,
-}: {
-  src: string;
-  alt: string;
-  label: string;
-}) {
-  return (
-    <figure className="my-10 -mx-5">
-      {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          width={800}
-          height={500}
-          className="w-full object-cover"
-          style={{ maxHeight: "420px" }}
-        />
-      ) : (
-        // Placeholder shown until Eric drops the real photo in
-        <div
-          className="flex items-center justify-center text-center px-6"
-          style={{
-            backgroundColor: "rgba(58,44,28,0.08)",
-            minHeight: "220px",
-            borderTop: "1px solid rgba(58,44,28,0.15)",
-            borderBottom: "1px solid rgba(58,44,28,0.15)",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "var(--font-dm-mono), monospace",
-              fontSize: "0.75rem",
-              color: "var(--color-muted)",
-              letterSpacing: "0.08em",
-            }}
-          >
-            [ PHOTO SLOT — {label} ]
-            <br />
-            Drop file at public/images/{src.replace("/images/", "")}
-          </p>
-        </div>
-      )}
-      {alt && src && (
-        <figcaption
-          className="mt-2 px-5 text-center"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "0.85rem",
-            fontStyle: "italic",
-            color: "var(--color-muted)",
-          }}
-        >
-          {alt}
-        </figcaption>
-      )}
-    </figure>
-  );
-}
 
 export default function StoryPage() {
   return (
@@ -130,14 +65,7 @@ export default function StoryPage() {
           </p>
         </div>
 
-        {/* PHOTO SLOT 1 — outdoors / trail / nature beat */}
-        <PhotoSlot
-          src=""
-          alt=""
-          label="Eric outdoors — trail, nature, movement beat"
-        />
-
-        {/* ── Full story — [ERIC TO EDIT] near-final draft ── */}
+        {/* ── Full story ── */}
         <div
           className="space-y-5"
           style={{
@@ -154,32 +82,13 @@ export default function StoryPage() {
             <em>ahh</em> — and for a second you&rsquo;re completely here? I
             wanted that on purpose. So I made it. For me first.
           </p>
-        </div>
 
-        {/* PHOTO SLOT 2 — casual / coffee / writing beat */}
-        <PhotoSlot
-          src=""
-          alt=""
-          label="Eric writing or coffee — personal, quiet beat"
-        />
-
-        <div
-          className="space-y-5"
-          style={{
-            fontFamily: "var(--font-cormorant), Georgia, serif",
-            fontSize: "1.18rem",
-            lineHeight: 1.65,
-          }}
-        >
           <p>
-            My girlfriend loves leggings. Not just for runs and workouts, but for
-            weekends that are all hers. When it&rsquo;s her time, it&rsquo;s
-            leggings time. So when we made ours, &ldquo;fine&rdquo; was never
-            going to cut it. We found the best ones we could and put our mark on
-            them. And I&rsquo;ll say it, she looks amazing in them. This is the
-            early collection. Down the road, she&rsquo;s going to design the next
-            generation of Human Frēq gear herself. For now, we picked the best
-            out there and made it ours.
+            The apparel followed the same standard as the book: it had to earn
+            its place. I chose pieces I would actually wear, then kept refining
+            the details until they felt like Human Fr&#x113;q — quiet, useful,
+            comfortable, and strong enough to become part of real life rather
+            than another thing asking for attention.
           </p>
 
           <p>
@@ -188,18 +97,11 @@ export default function StoryPage() {
             reset a few things. One of the rules is a gallon of water a day.
             I&rsquo;m about three weeks in as I write this, and drinking that
             much, I&rsquo;ve learned something I didn&rsquo;t expect. Good water,
-            from a good bottle, actually feels different. So we picked the
-            highest-quality bottle we could find, because what we put in our
+            from a good bottle, actually feels different. So I chose the
+            highest-quality bottle I could find, because what we put in our
             bodies matters.
           </p>
         </div>
-
-        {/* PHOTO SLOT 3 — son / Pacific Northwest / outdoor gear beat */}
-        <PhotoSlot
-          src=""
-          alt=""
-          label="Son / Pacific Northwest / van life — outdoor line beat"
-        />
 
         <div
           className="space-y-5"
@@ -221,7 +123,6 @@ export default function StoryPage() {
         </div>
 
         {/* ── Founder note — handwriting-style web font (Caveat) ─────────── */}
-        {/* [ERIC TO EDIT] — this is the personal close; edit freely */}
         <div
           className="my-12 px-6 py-8 rounded-xl"
           style={{
@@ -292,3 +193,5 @@ export default function StoryPage() {
     </>
   );
 }
+
+

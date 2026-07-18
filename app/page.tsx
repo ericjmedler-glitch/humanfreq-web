@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import FeedPanel from "@/components/FeedPanel";
 import ScrollCue from "@/components/ScrollCue";
@@ -25,7 +25,7 @@ const PANELS: Array<{
     image: "/images/hero.png",
     alt: "Leggings fit shot",
     headline: "Made for the life you actually live.",
-    body: "My girlfriend's been an athlete her whole life, so trust me, she knows the difference between good leggings and the rest. Fine was never going to fly with her. So we kept looking until we found ones she actually loved, and put our mark on them. She wears them to the studio, on the trail, and on the weekends that belong to nobody but her.",
+    body: "These are the leggings you reach for when the day could go anywhere. Supportive enough for movement, comfortable enough for the hours after, and clean enough to live in beyond the workout. The point was never to make another pair. It was to choose one worth putting the HUMAN FRĒQ mark on.",
     textPosition: "left",
     objectPosition: "center 60%",
     emailCapture: true,
@@ -49,12 +49,11 @@ const PANELS: Array<{
     objectPosition: "center 40%",
   },
   // Panel 7 — Hoodie (stronger scrim, signed by Eric)
-  // PRIVACY: partner name replaced with "the girl I met" per locked privacy rule.
-  {
+    {
     image: "/images/done-enough.jpeg",
     alt: "Hoodie, quiet evening at home",
     headline: "Done enough.",
-    body: "The journey to get here has been long, and honestly, sometimes out of my control. The one thing I wanted was to throw this on, get on the couch, and have the girl I met drop her feet in my lap. Kick on the AC, pull on the hoodie, and the whole day goes quiet. I've done enough. Now we just sit here.",
+    body: "Some days ask enough of you. This is the layer you pull on when the work is finished, the noise can stop, and you can finally come back to yourself. Soft, familiar, and made for the moment the whole day goes quiet.",
     textPosition: "upper",
     objectPosition: "center 25%",
     strongScrim: true,
@@ -207,10 +206,9 @@ function HeroPanel() {
 }
 
 // ── Panel 2: Welcome / about the brand ───────────────────────────────────────
-// PRIVACY: opening sentence with partner name removed. Alt text corrected to generic description.
 function WelcomePanel() {
   const p2 = "I spent thirty-five years on the radio, talking to a city every morning. When that chapter ended, I had to figure out who I was without the microphone, and somewhere in that I started making things I actually wanted to wear and live in. Things that reminded me to be where I am, with the people I'm with. I'm wearing our flagship tee right here, the one I made first. It's in the shop.";
-  const p3 = "This is the first collection. It wasn't built by a company. It was made by two people who needed it, who figured you might too.";
+  const p3 = "HUMAN FRĒQ began when Eric Medler started making the things he wanted to wear, use, and live with—pieces that helped him return to what mattered. The book came first. The brand grew from the same idea.";
   const p4 = "A portion of every order goes to St. Jude Children's Research Hospital, because a brand about being present should help the families fighting to have more time. Everything's made to feel good on, the kind of soft you reach for without thinking. This is early access, a limited first collection. You found it early. Maybe it found you.";
 
   const bodyStyle: React.CSSProperties = {
@@ -248,12 +246,12 @@ function WelcomePanel() {
       {/* Image cell */}
       <div className="hf-panel-media">
         <Image
-          src="/images/welcome-couple.png"
-          alt="Two people by firelight"
+          src="/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png"
+          alt="HUMAN FRĒQ ensō mark"
           fill
           sizes="(min-width: 1024px) 56vw, 100vw"
           quality={85}
-          style={{ objectFit: "cover", objectPosition: "center 35%" }}
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(7,5,10,0.88) 0%, rgba(7,5,10,0.55) 55%, rgba(7,5,10,0.18) 100%)" }} />
 
@@ -466,3 +464,5 @@ function EmailSection() {
     </section>
   );
 }
+
+
