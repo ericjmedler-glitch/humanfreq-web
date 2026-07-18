@@ -246,12 +246,12 @@ function WelcomePanel() {
       {/* Image cell */}
       <div className="hf-panel-media">
         <Image
-          src="/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png"
-          alt="HUMAN FRĒQ ensō mark"
+          src="/images/founder-eric-approved-v1.jpg"
+          alt="Eric Medler, founder of HUMAN FRĒQ, wearing the Founders Tee"
           fill
           sizes="(min-width: 1024px) 56vw, 100vw"
           quality={85}
-          style={{ objectFit: "contain", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(7,5,10,0.88) 0%, rgba(7,5,10,0.55) 55%, rgba(7,5,10,0.18) 100%)" }} />
 
