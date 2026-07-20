@@ -28,15 +28,30 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Human Frēq — Your energy at rest is your frequency.",
+  metadataBase: new URL("https://shop.humanfreq.com"),
+  title: "Human Frēq — A book and collection by Eric Medler.",
   description:
-    "Move at the frequency of your body. Apparel and goods for people who train by feel. Early Access Collection.",
+    "A human being can do remarkable things. But when doing begins to replace being, it's time to come back. Book and collection by Eric Medler.",
   openGraph: {
     title: "Human Frēq",
-    description: "Your energy is your currency. Your energy at rest is your frequency.",
+    description: "A book and collection by Eric Medler. Start with the book.",
     siteName: "Human Frēq",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png",
+        width: 1679,
+        height: 1679,
+        alt: "Human Frēq logomark",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Human Frēq",
+    description: "A book and collection by Eric Medler. Start with the book.",
+    images: ["/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png"],
   },
 };
 
@@ -48,7 +63,8 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${cinzel.variable} ${dmMono.variable} ${caveat.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col sticky-clearance">
+      <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         {children}
       </body>
     </html>
