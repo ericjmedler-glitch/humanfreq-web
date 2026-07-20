@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // Confirmation copy: " ; )" must render as THREE LITERAL CHARACTERS — never an emoji.
 const CONFIRMATION =
-  "You’re on the list. We’ll only reach out when it matters. ; )";
+  "You’re on the list. I’ll only reach out when it matters. ; )";
 
 export default function EmailCapture() {
   const [email, setEmail] = useState("");

@@ -12,4 +12,4 @@ export const SHOP_URL = process.env.NEXT_PUBLIC_SHOP_URL || LOCKED_SHOP_URL;
 
 export const SITE_NAME = "Human Frēq";
 export const SITE_DESCRIPTION =
-  "Move at the frequency of your body. Apparel for people who train by feel.";
+  "A book and collection by Eric Medler.";

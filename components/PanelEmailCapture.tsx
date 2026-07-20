@@ -8,12 +8,12 @@ import { useState } from "react";
 //
 // All copy lives in these consts (never in JSX attributes) so apostrophes and
 // quotes can't break the parser.
-const HEADING = "JOIN THE FOUNDERS COLLECTION";
+const HEADING = "JOIN THE FREQUENCY";
 const LINE =
-  "The next ones are being designed now. Be the first to know when they land.";
+  "The book, the collection, and the moments that shape both. I'll reach out when something is worth sharing.";
 // The " ; )" below is THREE LITERAL CHARACTERS (semicolon, space, close-paren).
 // Never substitute an emoji.
-const CONFIRMATION = "You're on the list. We'll only reach out when it matters.  ; )";
+const CONFIRMATION = "You're on the list. I'll only reach out when it matters.  ; )";
 
 export default function PanelEmailCapture() {
   const [email, setEmail] = useState("");

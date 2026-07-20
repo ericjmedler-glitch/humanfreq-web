@@ -195,7 +195,7 @@ export default function FeedPanel({
               Shop the Fr&#x113;q Shop
             </a>
             <Link href="/story" style={storyLinkStyle}>
-              Our story
+              Eric&rsquo;s story
             </Link>
           </div>
         </div>
@@ -262,7 +262,7 @@ export default function FeedPanel({
               Shop the Fr&#x113;q Shop
             </a>
             <Link href="/story" style={{ ...storyLinkStyle, opacity: 0.6 }}>
-              Our story
+              Eric&rsquo;s story
             </Link>
           </div>
         </div>

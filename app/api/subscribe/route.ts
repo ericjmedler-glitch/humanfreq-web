@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { email } = await req.json();
+  let body: { email?: string; tag?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
+  const { email, tag } = body;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: "Valid email required." }, { status: 400 });
@@ -11,13 +18,18 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.KIT_API_KEY;
 
   if (!formId || !apiKey) {
-    // Kit not configured — log and succeed silently so email capture never blocks
-    console.warn("[subscribe] KIT_FORM_ID or KIT_API_KEY not set");
-    return NextResponse.json({ ok: true });
+    // Credentials not configured — return an honest failure, never a false success.
+    console.error("[subscribe] KIT_FORM_ID or KIT_API_KEY not configured — subscriber NOT added.", {
+      tag: tag ?? "none",
+    });
+    return NextResponse.json(
+      { error: "Email signup is temporarily unavailable. Please try again later." },
+      { status: 503 }
+    );
   }
 
   try {
-    const res = await fetch(
+    const kitRes = await fetch(
       `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
       {
         method: "POST",
@@ -25,14 +37,28 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({ api_key: apiKey, email }),
       }
     );
-    if (!res.ok) {
-      const body = await res.text();
-      console.warn("[subscribe] Kit error:", res.status, body);
-    }
-  } catch (err) {
-    // Kit is non-fatal — log and continue
-    console.warn("[subscribe] Kit fetch failed:", err);
-  }
 
-  return NextResponse.json({ ok: true });
+    if (!kitRes.ok) {
+      const kitBody = await kitRes.text();
+      console.error("[subscribe] Kit API error:", kitRes.status, kitBody, { tag: tag ?? "none" });
+      return NextResponse.json(
+        { error: "Unable to complete signup. Please try again." },
+        { status: 502 }
+      );
+    }
+
+    console.info("[subscribe] Subscriber added successfully.", { tag: tag ?? "none" });
+    return NextResponse.json({ ok: true });
+
+  } catch (err) {
+    console.error(
+      "[subscribe] Kit fetch failed:",
+      err instanceof Error ? err.message : String(err),
+      { tag: tag ?? "none" }
+    );
+    return NextResponse.json(
+      { error: "Network error during signup. Please try again." },
+      { status: 503 }
+    );
+  }
 }
