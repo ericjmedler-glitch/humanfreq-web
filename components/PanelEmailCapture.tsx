@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 
 // Compact email capture for use OVER a photo panel (light text on a dark
 // backing). Same Kit mechanism as the end-of-feed capture, smaller footprint
@@ -16,6 +16,7 @@ const LINE =
 const CONFIRMATION = "You're on the list. I'll only reach out when it matters.  ; )";
 
 export default function PanelEmailCapture() {
+  const id = useId();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
 
@@ -91,7 +92,24 @@ export default function PanelEmailCapture() {
             onSubmit={handleSubmit}
             style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}
           >
+            <label
+              htmlFor={id}
+              style={{
+                position: "absolute",
+                width: "1px",
+                height: "1px",
+                padding: 0,
+                margin: "-1px",
+                overflow: "hidden",
+                clip: "rect(0,0,0,0)",
+                whiteSpace: "nowrap",
+                borderWidth: 0,
+              }}
+            >
+              Your email address
+            </label>
             <input
+              id={id}
               type="email"
               inputMode="email"
               autoComplete="email"

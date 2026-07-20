@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 
 // Confirmation copy: " ; )" must render as THREE LITERAL CHARACTERS — never an emoji.
 const CONFIRMATION =
   "You’re on the list. I’ll only reach out when it matters. ; )";
 
 export default function EmailCapture() {
+  const id = useId();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
 
@@ -43,7 +44,11 @@ export default function EmailCapture() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-sm">
+      <label htmlFor={id} className="sr-only">
+        Your email address
+      </label>
       <input
+        id={id}
         type="email"
         inputMode="email"
         autoComplete="email"
