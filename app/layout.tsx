@@ -29,12 +29,12 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shop.humanfreq.com"),
-  title: "Human Frēq — Your energy at rest is your frequency.",
+  title: "Human Frēq — A book and collection by Eric Medler.",
   description:
-    "Move at the frequency of your body. A book and apparel collection for people who train by feel. Early Access.",
+    "A human being can do remarkable things. But when doing begins to replace being, it's time to come back. Book and collection by Eric Medler.",
   openGraph: {
     title: "Human Frēq",
-    description: "Move at the frequency of your body. Book and apparel for people who train by feel.",
+    description: "A book and collection by Eric Medler. Start with the book.",
     siteName: "Human Frēq",
     locale: "en_US",
     type: "website",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Human Frēq",
-    description: "Move at the frequency of your body. Book and apparel for people who train by feel.",
+    description: "A book and collection by Eric Medler. Start with the book.",
     images: ["/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png"],
   },
 };
