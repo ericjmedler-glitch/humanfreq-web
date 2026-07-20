@@ -299,10 +299,10 @@ function WelcomePanel() {
 
 // ── Panel 3: Founders Tee ─────────────────────────────────────────────────────
 // The image already carries its own headline + body, so we show it whole and
-// never overlay duplicate copy. Only the scarcity caption + amber CTA are added.
+// never overlay duplicate copy. A caption and amber CTA are added below the image.
 function FoundersTeePanel() {
   const caption =
-    "It carries marks the rest of the collection won't. Small things, on the sleeve, that mean something. This is the only tee that will ever wear them.";
+    "It carries small marks on the sleeve that mean something — a quiet reminder of where HUMAN FRĒQ began.";
 
   return (
     <section
@@ -399,8 +399,31 @@ function FoundersTeePanel() {
   );
 }
 
-// ── CTA bar — identical position on every mobile panel ───────────────────────
+// ── CTA bar — position on every mobile panel ─────────────────────────────────
+// Hero panel: Book-first (primary amber button), shop secondary (text link).
+// All other panels: Shop (primary amber button), Eric's story (text link).
 function PanelCTA({ isHero = false }: { isHero?: boolean }) {
+  if (isHero) {
+    return (
+      <div style={{ position: "absolute", bottom: "32px", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", padding: "0 20px" }}>
+        <Link
+          href="/book"
+          style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
+        >
+          <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
+          Start with the Book
+        </Link>
+        <a
+          href={SHOP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
+        >
+          Shop the Collection &#x2192;
+        </a>
+      </div>
+    );
+  }
   return (
     <div style={{ position: "absolute", bottom: "32px", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", padding: "0 20px" }}>
       <a
@@ -412,14 +435,12 @@ function PanelCTA({ isHero = false }: { isHero?: boolean }) {
         <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
         Shop the Fr&#x113;q Shop
       </a>
-      {isHero ? null : (
-        <Link
-          href="/story"
-          style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.5, textDecoration: "none" }}
-        >
-          Eric&rsquo;s story
-        </Link>
-      )}
+      <Link
+        href="/story"
+        style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.5, textDecoration: "none" }}
+      >
+        Eric&rsquo;s story
+      </Link>
     </div>
   );
 }
