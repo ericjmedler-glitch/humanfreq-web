@@ -10,6 +10,14 @@
 const LOCKED_SHOP_URL = "https://human-freq.printify.me";
 export const SHOP_URL = process.env.NEXT_PUBLIC_SHOP_URL || LOCKED_SHOP_URL;
 
+// SHOP_AVAILABLE governs whether any shop CTA is rendered on the public site.
+// Set to false during Stage 0 containment: the Printify storefront has not yet
+// passed the product-truth, scarcity, privacy, and policy audit.
+// To re-enable shop links after the storefront audit passes:
+//   set SHOP_AVAILABLE = true and redeploy.
+// SHOP_URL is preserved and will be used as soon as this flag is true.
+export const SHOP_AVAILABLE = false;
+
 export const SITE_NAME = "Human Frēq";
 export const SITE_DESCRIPTION =
   "A book and collection by Eric Medler.";

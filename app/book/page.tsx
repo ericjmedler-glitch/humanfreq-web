@@ -1,37 +1,36 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { BOOK_CONFIG, STATUS_LABELS } from "@/config/book";
 import BookInterestCapture from "@/components/BookInterestCapture";
 import ShopButton from "@/components/ShopButton";
 
 export const metadata: Metadata = {
-  title: "HUMAN FRĒQ — The Other Half of Being Human",
+  title: "HUMAN FRĒQ — A Book by Eric Medler",
   description:
     "A field guide for people who have spent years tuned to noise, urgency, and expectation — and are ready to hear themselves again. By Eric Medler.",
   alternates: {
     canonical: "/book",
   },
   openGraph: {
-    title: "HUMAN FRĒQ — The Other Half of Being Human",
+    title: "HUMAN FRĒQ — A Book by Eric Medler",
     description:
       "A field guide for people who have spent years tuned to noise, urgency, and expectation — and are ready to hear themselves again.",
     url: "/book",
     images: [
       {
-        url: "/images/HUMAN-FREQ-Study-C-v1.18-EBOOK-1600x2560.jpg",
-        width: 1600,
-        height: 2560,
-        alt: "HUMAN FRĒQ book cover — The Other Half of Being Human by Eric Medler",
+        url: "/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png",
+        width: 1679,
+        height: 1679,
+        alt: "HUMAN FRĒQ book cover by Eric Medler.",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "HUMAN FRĒQ — The Other Half of Being Human",
+    card: "summary",
+    title: "HUMAN FRĒQ — A Book by Eric Medler",
     description:
       "A field guide for people who have spent years tuned to noise, urgency, and expectation — and are ready to hear themselves again.",
-    images: ["/images/HUMAN-FREQ-Study-C-v1.18-EBOOK-1600x2560.jpg"],
+    images: ["/images/HumanFreq_IMAGE ONLY_Logo_Cream_4000px.png"],
   },
 };
 
@@ -75,19 +74,33 @@ export default function BookPage() {
 
         {/* Cover + title block */}
         <div className={`${sectionBase} pt-10 pb-14`}>
-          {/* Cover image */}
+          {/* Cover image suppressed: the v1.18 cover contains an unresolved subtitle
+              that has not been approved for public publication. A title-only typographic
+              block is used in its place. The image asset is preserved for later use
+              once a final subtitle decision has been made. */}
+
+          {/* Typographic title block — used in place of cover image */}
           <div
-            className="mx-auto mb-8"
-            style={{ maxWidth: "200px" }}
+            className="mx-auto mb-10"
+            style={{
+              maxWidth: "260px",
+              border: "1px solid rgba(200,169,110,0.35)",
+              borderRadius: "6px",
+              padding: "2.5rem 1.5rem",
+              textAlign: "center",
+              backgroundColor: "rgba(255,255,255,0.03)",
+            }}
           >
-            <Image
-              src="/images/HUMAN-FREQ-Study-C-v1.18-EBOOK-1600x2560.jpg"
-              alt="HUMAN FRĒQ — The Other Half of Being Human. Book cover: dark background with amber wordmark."
-              width={1600}
-              height={2560}
-              style={{ width: "100%", height: "auto", borderRadius: "4px" }}
-              priority
-            />
+            <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.55rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#C09030", margin: "0 0 1rem", opacity: 0.8 }}>
+              Human Fr&#x113;q
+            </p>
+            <div style={{ fontSize: "2.5rem", color: "#C09030", lineHeight: 1, marginBottom: "1rem" }}>○</div>
+            <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "clamp(1rem, 4vw, 1.2rem)", letterSpacing: "0.1em", color: "#EDE5D4", margin: "0 0 0.75rem" }}>
+              HUMAN FR&#x112;Q
+            </p>
+            <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "0.85rem", fontStyle: "italic", color: "#EDE5D4", opacity: 0.6, margin: 0 }}>
+              by Eric Medler
+            </p>
           </div>
 
           {/* Title */}
@@ -105,20 +118,6 @@ export default function BookPage() {
           >
             HUMAN FRĒQ
           </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-cormorant), Georgia, serif",
-              fontSize: "clamp(1.1rem, 4vw, 1.4rem)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "#EDE5D4",
-              textAlign: "center",
-              opacity: 0.85,
-              marginBottom: "0.4rem",
-            }}
-          >
-            The Other Half of Being Human
-          </p>
           <p
             style={{
               fontFamily: "var(--font-cinzel), serif",

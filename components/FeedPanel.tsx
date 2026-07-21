@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SHOP_URL } from "@/config/site";
+import { SHOP_AVAILABLE } from "@/config/site";
 import PanelEmailCapture from "@/components/PanelEmailCapture";
 
 // Text block position within the panel (mobile only — desktop uses right column).
@@ -190,10 +190,11 @@ export default function FeedPanel({
               padding: "0 20px",
             }}
           >
-            <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={shopBtnStyle}>
-              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
-              Shop the Fr&#x113;q Shop
-            </a>
+            {!SHOP_AVAILABLE && (
+              <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, textAlign: "center", margin: 0 }}>
+                The collection is being prepared.
+              </p>
+            )}
             <Link href="/story" style={storyLinkStyle}>
               Eric&rsquo;s story
             </Link>
@@ -257,10 +258,11 @@ export default function FeedPanel({
               gap: "12px",
             }}
           >
-            <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={shopBtnStyle}>
-              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
-              Shop the Fr&#x113;q Shop
-            </a>
+            {!SHOP_AVAILABLE && (
+              <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, margin: 0 }}>
+                The collection is being prepared.
+              </p>
+            )}
             <Link href="/story" style={{ ...storyLinkStyle, opacity: 0.6 }}>
               Eric&rsquo;s story
             </Link>

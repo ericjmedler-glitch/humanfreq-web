@@ -4,7 +4,7 @@ import FeedPanel from "@/components/FeedPanel";
 import ScrollCue from "@/components/ScrollCue";
 import EmailCapture from "@/components/EmailCapture";
 import PanelEmailCapture from "@/components/PanelEmailCapture";
-import { SHOP_URL } from "@/config/site";
+import { SHOP_AVAILABLE } from "@/config/site";
 import type { TextPosition } from "@/components/FeedPanel";
 
 // All panel copy lives here — plain JS strings, never in JSX attribute literals.
@@ -176,14 +176,11 @@ function HeroPanel() {
               <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
               Start with the Book
             </Link>
-            <a
-              href={SHOP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
-            >
-              Shop the Collection &#x2192;
-            </a>
+            {!SHOP_AVAILABLE && (
+              <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, margin: 0 }}>
+                The collection is being prepared.
+              </p>
+            )}
             <Link
               href="/story"
               style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
@@ -275,15 +272,11 @@ function WelcomePanel() {
             Read the story &#x2192;
           </Link>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
-            <a
-              href={SHOP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
-            >
-              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
-              Shop the Fr&#x113;q Shop
-            </a>
+            {!SHOP_AVAILABLE && (
+              <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, margin: 0 }}>
+                The collection is being prepared.
+              </p>
+            )}
             <Link
               href="/story"
               style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
@@ -377,15 +370,11 @@ function FoundersTeePanel() {
             <PanelEmailCapture />
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
-            <a
-              href={SHOP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
-            >
-              <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
-              Shop the Fr&#x113;q Shop
-            </a>
+            {!SHOP_AVAILABLE && (
+              <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, margin: 0 }}>
+                The collection is being prepared.
+              </p>
+            )}
             <Link
               href="/story"
               style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
@@ -413,28 +402,21 @@ function PanelCTA({ isHero = false }: { isHero?: boolean }) {
           <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
           Start with the Book
         </Link>
-        <a
-          href={SHOP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.6, textDecoration: "none" }}
-        >
-          Shop the Collection &#x2192;
-        </a>
+        {!SHOP_AVAILABLE && (
+          <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, margin: 0, textAlign: "center" }}>
+            The collection is being prepared.
+          </p>
+        )}
       </div>
     );
   }
   return (
     <div style={{ position: "absolute", bottom: "32px", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", padding: "0 20px" }}>
-      <a
-        href={SHOP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "var(--color-amber)", color: "#07050a", borderRadius: "9999px", padding: "0 28px", minHeight: "52px", fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.15rem", fontWeight: 600, letterSpacing: "0.04em", textDecoration: "none", boxShadow: "0 4px 20px rgba(192,144,48,0.4)", whiteSpace: "nowrap" }}
-      >
-        <span aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>○</span>
-        Shop the Fr&#x113;q Shop
-      </a>
+      {!SHOP_AVAILABLE && (
+        <p style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.55, margin: 0, textAlign: "center" }}>
+          The collection is being prepared.
+        </p>
+      )}
       <Link
         href="/story"
         style={{ fontFamily: "var(--font-cinzel), serif", fontSize: "0.62rem", letterSpacing: "0.14em", color: "var(--color-hero-text)", opacity: 0.5, textDecoration: "none" }}
