@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 
 // Confirmation copy: " ; )" must render as THREE LITERAL CHARACTERS — never an emoji.
 const CONFIRMATION =
-  "Your inbox isn’t a human Frēq, so if you don’t see us, peek in spam. The AI running things back there is still “working on its presence.”  ; )";
+  "You’re on the list. I’ll only reach out when it matters. ; )";
 
 export default function EmailCapture() {
+  const id = useId();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
 
@@ -43,7 +44,11 @@ export default function EmailCapture() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-sm">
+      <label htmlFor={id} className="sr-only">
+        Your email address
+      </label>
       <input
+        id={id}
         type="email"
         inputMode="email"
         autoComplete="email"
@@ -51,7 +56,7 @@ export default function EmailCapture() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        className="w-full rounded-lg border px-4 py-3 text-base outline-none transition-colors"
+        className="w-full rounded-lg border px-4 py-3 text-base transition-colors"
         style={{
           backgroundColor: "rgba(255,255,255,0.6)",
           borderColor: "rgba(58,44,28,0.3)",
@@ -72,7 +77,7 @@ export default function EmailCapture() {
           letterSpacing: "0.12em",
         }}
       >
-        {state === "loading" ? "Sending…" : "Grow with us →"}
+        {state === "loading" ? "Sending…" : "Notify me"}
       </button>
       {state === "error" && (
         <p className="text-sm" style={{ color: "#a05030" }}>
